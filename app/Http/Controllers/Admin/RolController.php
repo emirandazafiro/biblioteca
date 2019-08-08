@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\admin;
+namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Admin\Permiso;
-use App\Http\Requests\ValidarPermiso;
+use App\Http\Requests\ValidacionRol;
+use App\Models\Admin\Rol;
 
-class PermisoController extends Controller
+
+class RolController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +17,8 @@ class PermisoController extends Controller
      */
     public function index()
     {
-        $permisos = Permiso::orderBy('id')->get();
-        return view('admin.permiso.index', compact('permisos'));
+        $datas = Rol::orderBy('id')->get();
+        return view('admin.rol.index', compact('datas'));
     }
 
     /**
@@ -27,7 +28,7 @@ class PermisoController extends Controller
      */
     public function crear()
     {
-        return view('admin.permiso.crear');
+        return view('admin.rol.crear');
     }
 
     /**
@@ -36,22 +37,12 @@ class PermisoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function guardar(ValidarPermiso $request)
+    public function guardar(ValidacionRol $request)
     {
-        Permiso::create($request->all());
-        return redirect('admin/permiso/crear')->with('mensaje', 'Permiso creado con exito');
+        Rol::create($request->all());
+        return redirect('admin/rol')->with('mensaje', 'Rol creado con exito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function mostrar($id)
-    {
-        //
-    }
 
     /**
      * Show the form for editing the specified resource.
@@ -61,8 +52,8 @@ class PermisoController extends Controller
      */
     public function editar($id)
     {
-        $data = Permiso::findOrFail($id);
-        return view('admin.permiso.editar', compact('data'));
+        $data = Rol::findOrFail($id);
+        return view('admin.rol.editar', compact('data'));
     }
 
     /**
@@ -72,10 +63,10 @@ class PermisoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function actualizar(ValidarPermiso $request, $id)
+    public function actualizar(ValidacionRol $request, $id)
     {
-        Permiso::findOrFail($id)->update($request->all());
-        return redirect('admin/permiso')->with('mensaje', 'Permiso actualizado con exito');
+        Rol::findOrFail($id)->update($request->all());
+        return redirect('admin/rol')->with('mensaje', 'Rol actualizado con exito');
     }
 
     /**
@@ -87,7 +78,7 @@ class PermisoController extends Controller
     public function eliminar(Request $request, $id)
     {
         if ($request->ajax()) {
-            if (Permiso::destroy($id)) {
+            if (Rol::destroy($id)) {
                 return response()->json(['mensaje' => 'ok']);
             } else {
                 return response()->json(['mensaje' => 'ng']);

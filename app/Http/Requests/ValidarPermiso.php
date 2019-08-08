@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use App\Rules\ValidarCampoUrl;
 
-class ValidacionMenu extends FormRequest
+class ValidarPermiso extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,9 +24,8 @@ class ValidacionMenu extends FormRequest
     public function rules()
     {
         return [
-            'nombre' => 'required|max:50|unique:menu,nombre,' . $this->route('id'),
-            'url' => ['required', 'max:100', new ValidarCampoUrl],
-            'icono' => 'nullable|max:50'
+            'nombre' => 'required|max:50|unique:permiso,nombre,' . $this->route('id'),
+            'slug' => 'required|max:50|unique:permiso,slug,' . $this->route('id'),
         ];
     }
 }

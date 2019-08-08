@@ -1,6 +1,6 @@
 @extends("theme.$theme.layout")
 @section('titulo')
-Permisos
+Roles
 @endsection
 
 @section("scripts")
@@ -11,31 +11,33 @@ Permisos
 <div class="row">
     <div class="col-lg-12">
         @include('includes.mensaje')
-        <div class="box box-primary">
+        <div class="box">
             <div class="box-header with-border">
-                <h3 class="box-title">Permisos</h3>
-                <a href="{{route('crear_permiso')}}" class="btn btn-success btn-sm pull-right">Crear permiso</a>
+                <h3 class="box-title">Roles</h3>
+                <div class="box-tools pull-right">
+                    <a href="{{route('crear_rol')}}" class="btn btn-block btn-success btn-sm">
+                        <i class="fa fa-fw fa-plus-circle"></i> Nuevo registro
+                    </a>
+                </div>
             </div>
-            <div class="box-body table-responsive no-padding">
+            <div class="box-body">
                 <table class="table table-striped table-bordered table-hover" id="tabla-data">
                     <thead>
                         <tr>
-                            <th>Nombre </th>
-                            <th>Slug</th>
+                            <th>Nombre</th>
                             <th class="width70"></th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($permisos as $permiso)
+                        @foreach ($datas as $data)
                         <tr>
-                            <td>{{$permiso->nombre}}</td>
-                            <td>{{$permiso->slug}}</td>
+                            <td>{{$data->nombre}}</td>
                             <td>
-                                <a href="{{route('editar_permiso', ['id' => $permiso->id])}}"
+                                <a href="{{route('editar_rol', ['id' => $data->id])}}"
                                     class="btn-accion-tabla tooltipsC" title="Editar este registro">
                                     <i class="fa fa-fw fa-pencil"></i>
                                 </a>
-                                <form action="{{route('eliminar_permiso', ['id' => $permiso->id])}}"
+                                <form action="{{route('eliminar_rol', ['id' => $data->id])}}"
                                     class="d-inline form-eliminar" method="POST">
                                     @csrf @method("delete")
                                     <button type="submit" class="btn-accion-tabla eliminar tooltipsC"
@@ -46,6 +48,7 @@ Permisos
                             </td>
                         </tr>
                         @endforeach
+
                     </tbody>
                 </table>
             </div>

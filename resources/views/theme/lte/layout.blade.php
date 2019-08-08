@@ -15,18 +15,14 @@
     <link rel="stylesheet" href="{{asset("assets/$theme/bower_components/Ionicons/css/ionicons.min.css")}}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/AdminLTE.min.css")}}">
-    <!-- AdminLTE Skins. Choose a skin from the css/skins
-        folder instead of downloading all of them to reduce the load. -->
+    <!-- AdminLTE Skins. Choose a skin from the css/skins-->
     <link rel="stylesheet" href="{{asset("assets/$theme/dist/css/skins/_all-skins.min.css")}}">
 
+    <link rel="stylesheet" href="{{asset("assets/js/jquery-nestable/jquery.nestable.css")}}">
+    <link rel="stylesheet" href="{{asset("assets/js/toastrjs/toastr.css")}}">
+
+    @yield("styles")
     <link rel="stylesheet" href="{{asset("assets/css/custom.css")}}">
-    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-    <!--[if lt IE 9]>
-    <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-    <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-    @yield('sytles')
 </head>
 
 <body class="hold-transition skin-blue fixed sidebar-mini">
@@ -60,11 +56,16 @@
     <!-- AdminLTE App -->
     <script src="{{asset("assets/$theme/dist/js/adminlte.min.js")}}"></script>
 
-    @yield('scripts')
+    @yield('scriptsPlugins')
+
     <script src="{{asset("assets/js/jquery-validation/jquery.validate.min.js")}}"></script>
     <script src="{{asset("assets/js/jquery-validation/localization/messages_es.min.js")}}"></script>
+    <script src="{{asset("assets/js/sweetalert/sweetalert.min.js")}}"></script>
+    <script src="{{asset("assets/js/toastrjs/toastr.js")}}"></script>
+    <script src="{{asset("assets/js/scripts.js")}}"></script>
     <script src="{{asset("assets/js/funciones.js")}}"></script>
 
+    @yield('scripts')
 </body>
 
 </html>
